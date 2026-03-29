@@ -1,23 +1,13 @@
 def candyCrush(s:str, k:int) -> str: 
     stack = []
     for char in s:
-        if not stack:
-            stack.append([char, 1])
-            continue
-        
-        current = stack[-1]
-
-        #print(current)
-        if current[0] == char:
-            current[1] += 1
-
-            if current[1] == k:
-                #print("popping")
-                #print(current)
-                stack.pop()
-
+        if stack and stack[-1][0] == char:
+            stack[-1][1] += 1
         else:
-            stack.append([char, 1])
+            stack.append([char,1])
+        
+        if stack[-1][1] == k:
+            stack.pop()
     
     result = []
     for char, count in stack:
